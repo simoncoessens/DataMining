@@ -16,3 +16,5 @@ TODO: 2 November
   - Pepe: Weather data
   - Simon: Visualizations ✅, Seperate journeys
 
+NEXT MEETING: wednesday 8 november 15:00 
+
