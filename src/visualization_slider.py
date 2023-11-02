@@ -2,11 +2,11 @@ import pandas as pd
 import folium
 from shapely.geometry import Point
 from geopandas import GeoDataFrame
+from folium.plugins import TimestampedGeoJson
 
 # Define a filter fraction to remove entries from the DataFrame
-filter_fraction = 10  # Removes 99/100 entries
+filter_fraction = 10  # Removes 9/10 entries
 mapped_veh_id = 181
-
 
 # Load the CSV file
 df = pd.read_csv("ar41_for_ulb.csv", delimiter=';')
@@ -26,8 +26,6 @@ df = df.reset_index(drop=True)
 # Create a new DataFrame with every filter_fraction'th entry
 df = df.iloc[::filter_fraction]
 
-print("Number of rows", df.count())
-
 # Create a GeoDataFrame with Point geometries
 geometry = [Point(xy) for xy in zip(df['lon'], df['lat'])]
 gdf = GeoDataFrame(df, geometry=geometry)
@@ -38,20 +36,34 @@ map_center = [df['lat'].mean(), df['lon'].mean()]
 # Create a Folium map
 m = folium.Map(location=map_center, zoom_start=12)
 
-# Add CircleMarkers for each row in the GeoDataFrame
-for _, row in gdf.iterrows():
-    popup_text = f"Vehicle ID: {row['mapped_veh_id']}"
-    folium.CircleMarker(
-        location=[row['geometry'].y, row['geometry'].x],
-        radius=1,
-        popup=popup_text,
-        color='blue',
-        fill=True,
-        fill_color='blue'
-    ).add_to(m)
+# Prepare data for the TimestampedGeoJson
+features = []
+for idx, row in gdf.iterrows():
+    feature = {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [row['geometry'].x, row['geometry'].y],
+        },
+        "properties": {
+            "time": row['date'].isoformat(),
+            "popup": f"Vehicle ID: {row['mapped_veh_id']}",
+        },
+    }
+    features.append(feature)
+
+# Add the TimestampedGeoJson to the map with a period of 10 minutes
+TimestampedGeoJson(
+    {
+        "type": "FeatureCollection",
+        "features": features,
+    },
+    period="PT10M",  # Change the time period to 10 minutes
+    add_last_point=False,
+).add_to(m)
 
 # Name the HTML file dynamically based on 'mapped_veh_id'
-html_file_name = f'vehicle_map_{mapped_veh_id}.html'
+html_file_name = f'vehicle_slider_map_{mapped_veh_id}.html'
 
 # Save the map as the dynamically named HTML file
 m.save(html_file_name)
