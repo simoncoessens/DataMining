@@ -7,7 +7,7 @@ from geopandas import GeoDataFrame
 filter_fraction = 10  # Removes 99/100 entries
 
 # Load the CSV file
-df = pd.read_csv("ar41_for_ulb.csv", delimiter=';')
+df = pd.read_csv("ar41_for_ulb_mini.csv", delimiter=';')
 
 # Create a new DataFrame with every filter_fraction'th entry
 df = df.iloc[::filter_fraction]
