@@ -17,6 +17,7 @@ df = df[df['mapped_veh_id'] == mapped_veh_id]
 # Convert timestamps to datetime
 df['date'] = pd.to_datetime(df['timestamps_UTC'])
 
+
 # Sort the DataFrame based on the 'date' column
 df = df.sort_values(by='date')
 

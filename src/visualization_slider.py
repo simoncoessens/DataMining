@@ -5,17 +5,20 @@ from geopandas import GeoDataFrame
 from folium.plugins import TimestampedGeoJson
 
 # Define a filter fraction to remove entries from the DataFrame
-filter_fraction = 10  # Removes 9/10 entries
+filter_fraction = 1  # Removes 9/10 entries
 mapped_veh_id = 181
 
 # Load the CSV file
 df = pd.read_csv("ar41_for_ulb.csv", delimiter=';')
 
 # Filter out based on mapped_veh_id
-df = df[df['mapped_veh_id'] == mapped_veh_id]
+#df = df[df['mapped_veh_id'] == mapped_veh_id]
 
 # Convert timestamps to datetime
 df['date'] = pd.to_datetime(df['timestamps_UTC'])
+
+# Filter entries for the month of July
+df = df[df['date'].dt.month == 7]
 
 # Sort the DataFrame based on the 'date' column
 df = df.sort_values(by='date')
@@ -24,7 +27,7 @@ df = df.sort_values(by='date')
 df = df.reset_index(drop=True)
 
 # Create a new DataFrame with every filter_fraction'th entry
-df = df.iloc[::filter_fraction]
+#df = df.iloc[::filter_fraction]
 
 # Create a GeoDataFrame with Point geometries
 geometry = [Point(xy) for xy in zip(df['lon'], df['lat'])]
@@ -38,7 +41,10 @@ m = folium.Map(location=map_center, zoom_start=12)
 
 # Prepare data for the TimestampedGeoJson
 features = []
+count = 0
 for idx, row in gdf.iterrows():
+    count += 1
+    print(count)
     feature = {
         "type": "Feature",
         "geometry": {
@@ -58,8 +64,9 @@ TimestampedGeoJson(
         "type": "FeatureCollection",
         "features": features,
     },
-    period="PT10M",  # Change the time period to 10 minutes
+    period="PT1M",  # Change the time period to 10 minutes
     add_last_point=False,
+    duration= "PT1M"
 ).add_to(m)
 
 # Name the HTML file dynamically based on 'mapped_veh_id'
