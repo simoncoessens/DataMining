@@ -3,6 +3,7 @@ import folium
 from shapely.geometry import Point
 from geopandas import GeoDataFrame
 from folium.plugins import TimestampedGeoJson
+import random
 
 # Define a filter fraction to remove entries from the DataFrame
 filter_fraction = 1  # Removes 9/10 entries
@@ -14,16 +15,13 @@ month = 8
 df = pd.read_csv("ar41_for_ulb.csv", delimiter=';')
 
 # Filter out based on mapped_veh_id
-#df = df[df['mapped_veh_id'] == mapped_veh_id]
+# df = df[df['mapped_veh_id'] == mapped_veh_id]
 
 # Convert timestamps to datetime
 df['date'] = pd.to_datetime(df['timestamps_UTC'])
 
-# Filter entries for the 1st of July
-df = df[df['date'].dt.month == month]
-df = df[df['date'].dt.day == day]
-
-print('Number of entries', df.count())
+# Filter entries for the specified day and month
+df = df[(df['date'].dt.month == month) & (df['date'].dt.day == day)]
 
 # Sort the DataFrame based on the 'date' column
 df = df.sort_values(by='date')
@@ -32,7 +30,15 @@ df = df.sort_values(by='date')
 df = df.reset_index(drop=True)
 
 # Create a new DataFrame with every filter_fraction'th entry
-#df = df.iloc[::filter_fraction]
+# df = df.iloc[::filter_fraction]
+
+# Create a color map and assign each 'mapped_veh_id' to a unique hex color
+color_map = {}
+unique_vehicle_ids = df['mapped_veh_id'].unique()
+for veh_id in unique_vehicle_ids:
+    # Generate a random hexadecimal color
+    color = "#{:02x}{:02x}{:02x}".format(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    color_map[veh_id] = color
 
 # Create a GeoDataFrame with Point geometries
 geometry = [Point(xy) for xy in zip(df['lon'], df['lat'])]
@@ -46,10 +52,8 @@ m = folium.Map(location=map_center, zoom_start=12)
 
 # Prepare data for the TimestampedGeoJson
 features = []
-count = 0
+
 for idx, row in gdf.iterrows():
-    count += 1
-    print(count)
     feature = {
         "type": "Feature",
         "geometry": {
@@ -59,23 +63,31 @@ for idx, row in gdf.iterrows():
         "properties": {
             "time": row['date'].isoformat(),
             "popup": f"Vehicle ID: {row['mapped_veh_id']}",
+            "id": f"vehicle-{row['mapped_veh_id']}",
+            "icon": "circle",
+            "iconstyle": {
+                "fillColor": color_map.get(row['mapped_veh_id'], '#808080'),
+                "fillOpacity": 0.6,
+                "stroke": "false",
+                "radius": 10,
+            },
         },
     }
     features.append(feature)
 
-# Add the TimestampedGeoJson to the map with a period of 10 minutes
+# Add the TimestampedGeoJson to the map with a period of 2 minutes
 TimestampedGeoJson(
     {
         "type": "FeatureCollection",
         "features": features,
     },
-    period="PT2M",  # Change the time period to 10 minutes
+    period="PT2M",
     add_last_point=False,
-    duration= "PT1M"
+    duration="PT1M"
 ).add_to(m)
 
 # Name the HTML file dynamically based on 'mapped_veh_id'
-html_file_name = f'vehicle_slider_map_1july.html'
+html_file_name = f'vehicle_slider_map_color_1aug.html'
 
 # Save the map as the dynamically named HTML file
 m.save(html_file_name)
