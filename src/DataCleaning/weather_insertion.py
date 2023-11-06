@@ -9,11 +9,12 @@ from scipy.spatial import cKDTree
 
 # Import file with locations of all weather stations
 ws = pd.read_csv('grid_points_bel.csv')
+wsdf = pd.DataFrame(ws)
 
-# Create a GeoDataFrame from the weather station data
-geometry = [Point(lon, lat) for lon, lat in zip(ws['lon'], ws['lat'])]
+# Create a GeoDataFrame from the pull request data
+geometry = [Point(lon, lat) for lon, lat in zip(wsdf['lon'], ws['lat'])]
 crs = {'init': 'epsg:4326'}
-gdf = gpd.GeoDataFrame(ws, crs=crs, geometry=geometry)
+gdf = gpd.GeoDataFrame(wsdf, crs=crs, geometry=geometry)
 
 # Loop for json requests
 weather = pd.DataFrame()
@@ -39,10 +40,13 @@ df['timestamps_floor'] = df['timestamps_UTC'].dt.floor('H')
 # Create a cKDTree from the weather coordinates for fast spatial queries
 weather_tree = cKDTree(gdf[['lon', 'lat']])
 
-# Find the nearest weather station for each train timestamp
-df['nearest_point_idx'] = [weather_tree.query((lon, lat))[1] for lon, lat in zip(df['lon'], df['lat'])]
+# Find the nearest weather point for each train timestamp
+nearest_indices = [weather_tree.query((lon, lat))[1] for lon, lat in zip(df['lon'], df['lat'])]
+df['nearest_point_id'] = gdf['id'].iloc[nearest_indices].to_list()
 
 # Merge with weather data based on the nearest point index
-wdf = pd.merge(df, weather, how='left', left_on=['timestamps_floor', 'nearest_point_idx'], right_on=['Time', 'ID'])
+wdf = pd.merge(df, weather, how='left', left_on=['timestamps_floor', 'nearest_point_id'], right_on=['Time', 'ID'])
+wdf = wdf.drop(columns=['Unnamed: 0', 'ID'])
+print(wdf)
 
-wdf.to_csv('prueba2.csv', sep='\t')
+wdf.to_csv('ar41_mini_weather_test.csv', sep='\t')
