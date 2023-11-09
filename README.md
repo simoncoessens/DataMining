@@ -33,7 +33,7 @@ How to import weather data:
 
 
 TODO: 2 November
-  - Narmina: Anomaly detection techniques
+  - Narmina: Anomaly detection techniques ✅
   - Konok: Data Cleaning ✅, Anomaly detection techniques ✅
   - Pepe: Weather data ✅
   - Simon: Visualizations ✅, Seperate journeys ✅
