@@ -1,23 +1,5 @@
 README: 
-
-
-
-How to import weather data: 
-  - Assign weather data from closest weather station?
-        - Is weather data always pulled from closest weather station?
-        - Would it be more accurate to assign a temperature based on trip partitions?
-  - Choose a time interval and update weather data only after every time interval
-
-
-
-TODO: 2 November
-  - Narmina: Anomaly detection techniques
-  - Konok: Data Cleaning ✅, Anomaly detection techniques
-  - Pepe: Weather data ✅
-  - Simon: Visualizations ✅, Seperate journeys ✅
-
-NEXT MEETING: thursday 9 november 10:00 
-
+Data Mining project for the Data Mining course at ULB.
 
 ```
 
@@ -42,4 +24,38 @@ ___________|||______________________________|______________/
 -----------'''---------------------------------------'
 ```
 
+How to import weather data: 
+  - Assign weather data from closest weather station?
+        - Is weather data always pulled from closest weather station?
+        - Would it be more accurate to assign a temperature based on trip partitions?
+  - Choose a time interval and update weather data only after every time interval
+
+
+
+TODO: 2 November
+  - Narmina: Anomaly detection techniques
+  - Konok: Data Cleaning ✅, Anomaly detection techniques ✅
+  - Pepe: Weather data ✅
+  - Simon: Visualizations ✅, Seperate journeys ✅
+
+**NEXT MEETING**: thursday 9 november 10:00 
+
+TODO: 9 November:
+  - Simon: MobilityDB setup
+  - Narmina: Anomaly detection techniques
+  - Konok: Local notebook (jupyter)
+  - Pepe: other work
+
+for  everyone: 
+  - Refresh on Data Mining concepts
+  - How to build Data Mining workflows? 
+
+WEATHER DATA: 
+What weather data are we going to incorporate in the analyis. 
+- ``Temperature``
+- ```Humidity```
+- ````Snowfall````
+- ```Rain```
+
+**NEXT MEETING**: thursday 16 november 10:00 
 
