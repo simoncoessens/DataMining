@@ -19,10 +19,10 @@ gdf = gpd.GeoDataFrame(wsdf, crs=crs, geometry=geometry)
 # Loop for json requests
 weather = pd.DataFrame()
 for index, row in ws.iterrows():
-    url = 'https://archive-api.open-meteo.com/v1/era5?latitude='+str(row['lat'])+'&longitude='+str(row['lon'])+'&start_date=2023-01-01&end_date=2023-09-13&hourly=temperature_2m'
+    url = 'https://archive-api.open-meteo.com/v1/era5?latitude='+str(row['lat'])+'&longitude='+str(row['lon'])+'&start_date=2023-01-01&end_date=2023-09-13&hourly=temperature_2m,relative_humidity_2m,rain'
     response = requests.get(url)
     if response.status_code == 200:
-        data_aux = pd.DataFrame({"ID": row['id'], "Lat": row['lat'], "Lon": row['lon'], "Time": response.json()["hourly"]["time"], "Temperature": response.json()["hourly"]["temperature_2m"]})
+        data_aux = pd.DataFrame({"ID": row['id'], "Lat": row['lat'], "Lon": row['lon'], "Time": response.json()["hourly"]["time"], "Temperature": response.json()["hourly"]["temperature_2m"], "Humidity": response.json()["hourly"]["relative_humidity_2m"], "Rain": response.json()["hourly"]["rain"]})
         weather = pd.concat([weather, data_aux])
     else:
         print('Error')
@@ -31,13 +31,13 @@ for index, row in ws.iterrows():
 weather['Time'] = pd.to_datetime(weather['Time'])
 
 # Input csv file for the complete dataset
-df = pd.read_csv('ar41_for_ulb_mini.csv', delimiter=';')
+df = pd.read_csv('ar41_for_ulb.csv', delimiter=';')
 df['timestamps_UTC'] = pd.to_datetime(df['timestamps_UTC'])
 
 # Get floor of hour
 df['timestamps_floor'] = df['timestamps_UTC'].dt.floor('H')
 
-# Create a cKDTree from the weather coordinates for fast spatial queries
+# cKDTree from the weather coordinates to perform spatial queries
 weather_tree = cKDTree(gdf[['lon', 'lat']])
 
 # Find the nearest weather point for each train timestamp
@@ -47,6 +47,5 @@ df['nearest_point_id'] = gdf['id'].iloc[nearest_indices].to_list()
 # Merge with weather data based on the nearest point index
 wdf = pd.merge(df, weather, how='left', left_on=['timestamps_floor', 'nearest_point_id'], right_on=['Time', 'ID'])
 wdf = wdf.drop(columns=['Unnamed: 0', 'ID'])
-print(wdf)
 
-wdf.to_csv('ar41_mini_weather_test.csv', sep='\t')
+wdf.to_csv('ar41_weather.csv', sep='\t')
