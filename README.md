@@ -41,14 +41,14 @@ TODO: 2 November
 **NEXT MEETING**: thursday 9 november 10:00 
 
 TODO: 9 November:
-  - Simon: MobilityDB setup
-  - Narmina: Anomaly detection techniques
-  - Konok: Local notebook (jupyter)
-  - Pepe: other work
+  - Simon: MobilityDB setup ✅
+  - Narmina: Anomaly detection techniques ✅
+  - Konok: Local notebook (jupyter) ✅
+  - Pepe: other work ✅
 
 for  everyone: 
-  - Refresh on Data Mining concepts
-  - How to build Data Mining workflows? 
+  - Refresh on Data Mining concepts ✅
+  - How to build Data Mining workflows? ✅
 
 WEATHER DATA: 
 What weather data are we going to incorporate in the analyis. 
@@ -73,8 +73,8 @@ Feature extraction:
 	5.	Data mining algorithms
 
 TASKS: 
-	●	Connect kaggle to local postgres (Simon)
-	●	Adding extra features to the DB (Pepe)
-	●	Correlation, heat map, feature extraction (Konok)
-	●	preprocessing (Narmina)
+- Connect kaggle to local postgres (Simon)
+- Adding extra features to the DB (Pepe)
+- Correlation, heat map, feature extraction (Konok)
+- preprocessing (Narmina)
 
