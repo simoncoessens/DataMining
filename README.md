@@ -78,3 +78,6 @@ TASKS:
 - Correlation, heat map, feature extraction (Konok)
 - preprocessing (Narmina)
 
+
+**NEXT MEETING**: Sunday 19 november 10:00 
+
