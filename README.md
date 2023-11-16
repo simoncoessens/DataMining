@@ -59,3 +59,22 @@ What weather data are we going to incorporate in the analyis.
 
 **NEXT MEETING**: thursday 16 november 10:00 
 
+
+NEXT STEPS: 
+
+Feature extraction: 
+- Labeling the anomalies
+
+
+ 1. Data cleaning ( output: .csv)
+	2.	Database creation
+	3.	Add features to the DB
+	4.	Feature extraction
+	5.	Data mining algorithms
+
+TASKS: 
+	●	Connect kaggle to local postgres (Simon)
+	●	Adding extra features to the DB (Pepe)
+	●	Correlation, heat map, feature extraction (Konok)
+	●	preprocessing (Narmina)
+
