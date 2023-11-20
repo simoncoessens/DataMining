@@ -81,3 +81,35 @@ TASKS:
 
 **NEXT MEETING**: Sunday 19 november 10:00 
 
+
+**NEXT MEETING:** Thursday 23, November (after going to Data Mining lab)
+
+Classification will be important for the stream outlier detection part of the project
+
+Feature extraction:
+- Difference between two sensors
+- Temperature categorization
+
+Type portability:
+- Numerical to categorical (temperature values)
+
+Descriptive Analytics:
+- Narmina has performed sampling rate (it varies)
+- Simon has looked into segment speed
+- Pepe has looked into bounding box (values not contained in the Belgium geom)
+
+Noisy entries:
+- Konok mentioned binning to clean the noisy entries
+
+Distance:
+- Distance to weather pull sensors can be included in the outlier detection analysis
+
+Clustering:
+- Could be useful to clean data (if a data point doesn't end up in a cluster it could be considered an outlier)
+
+Topics to be investigated:
+- Narmina: Classification and model validation data preparation
+- Konok: Clustering
+- Simon: Frequent patterns and association rule mining
+- Pepe: Outlier mining
+
