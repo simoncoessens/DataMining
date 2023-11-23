@@ -113,3 +113,13 @@ Topics to be investigated:
 - Simon: Frequent patterns and association rule mining
 - Pepe: Outlier mining
 
+
+Basic research questions: 
+- Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id).
+- Locations of the places where the temperatures are outside of the boundaries.
+- Look at the rpm values for when the temperatures are outside the boundaries.
+- Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?
+- How do external weather conditions correlate with the anomalies in the cooling systems?
+- How long do temperature anomalies last, and how severe are they?
+- Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?
+- 
