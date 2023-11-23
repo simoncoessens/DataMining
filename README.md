@@ -115,7 +115,7 @@ Topics to be investigated:
 
 
 Basic research questions: 
-- Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id).
+- Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id). (look at abs_occ_temp.csv in exports)
 - Locations of the places where the temperatures are outside of the boundaries.
 - Look at the rpm values for when the temperatures are outside the boundaries.
 - Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?
