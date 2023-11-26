@@ -123,6 +123,7 @@ Topics to be investigated:
 - How long do temperature anomalies last, and how severe are they?
 - Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?
 - Look at the speed and find anomalies -> ```solved``` Simon working on it
+- Look at the internal temperature sensor values that exceed certain difference with the ambient temperature -> Pepe working on it
 
 
 **Ideas on things for the stream bonus task**
