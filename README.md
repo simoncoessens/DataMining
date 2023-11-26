@@ -127,3 +127,4 @@ Topics to be investigated:
 
 **Ideas on things for the stream bonus task**
 - Algorithm that checks incoming locations if the speed is within boundaries, otherwise flags incorrect location
+- Algorithm that checks incoming temperatures and checks duration of occurances when temperature is outside of boundarie and then reports
