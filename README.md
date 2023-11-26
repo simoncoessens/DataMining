@@ -122,4 +122,4 @@ Topics to be investigated:
 - How do external weather conditions correlate with the anomalies in the cooling systems?
 - How long do temperature anomalies last, and how severe are they?
 - Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?
-- 
+- Look at the speed and find anomalies -> ```solved``` Simon working on it
