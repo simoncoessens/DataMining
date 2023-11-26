@@ -73,10 +73,10 @@ Feature extraction:
 	5.	Data mining algorithms
 
 TASKS: 
-- Connect kaggle to local postgres (Simon)
-- Adding extra features to the DB (Pepe)
-- Correlation, heat map, feature extraction (Konok)
-- preprocessing (Narmina)
+- Connect kaggle to local postgres (Simon) ✅
+- Adding extra features to the DB (Pepe) ✅
+- Correlation, heat map, feature extraction (Konok) ✅
+- preprocessing (Narmina) ✅
 
 
 **NEXT MEETING**: Sunday 19 november 10:00 
