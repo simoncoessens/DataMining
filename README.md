@@ -124,7 +124,7 @@ Topics to be investigated:
 7.  Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?
 8. Look at the speed and find anomalies -> ```solved``` Simon working on it
 9. Look at the internal temperature sensor values that exceed certain difference with the ambient temperature -> Pepe working on it
-10.
+10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each another
 
 
 **Ideas on things for the stream bonus task**
