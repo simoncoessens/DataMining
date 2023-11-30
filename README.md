@@ -115,16 +115,26 @@ Topics to be investigated:
 
 
 **Basic research questions:**
-1. Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id). 🔄 (look at abs_occ_temp.csv in exports)
+1. Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id).
+	SIMON: 🔄 (look at abs_occ_temp.csv in exports)
 2.  Locations of the places where the temperatures are outside of the boundaries.
-3.  Look at the rpm values for when the temperatures are outside the boundaries -> 🔄 Narmina working on it
-4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent? 🔄 Konok working on it
-5. How do external weather conditions correlate with the anomalies in the cooling systems? 🔄 Konok working on it
+	?
+3.  Look at the rpm values for when the temperatures are outside the boundaries
+   	NARMINA: 🔄 working on it
+4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?
+   	KONOK: 🔄  working on it
+5. How do external weather conditions correlate with the anomalies in the cooling systems?
+   	KONOK: 🔄  working on it
 6. How long do temperature anomalies last, and how severe are they?
+   	?
 7.  Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?
-8. Look at the speed and find anomalies -> 🔄 Simon working on it
-9. Look at the internal temperature sensor values that exceed certain difference with the ambient temperature -> Pepe working on it
+   	?
+8. Look at the speed and find anomalies
+   	SIMON: 🔄 working on it
+9. Look at the internal temperature sensor values that exceed certain difference with the ambient temperature
+	PEPE: 🔄 working on it
 10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each another
+	?
 
 
 **Ideas on things for the stream bonus task**
