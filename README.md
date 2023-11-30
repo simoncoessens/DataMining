@@ -25,8 +25,8 @@ ___________|||______________________________|______________/
 ```
 
 How to import weather data: 
-  - Assign weather data from closest weather station?
-        - Is weather data always pulled from closest weather station?
+  - Assign weather data from the closest weather station.
+        - Is weather data always pulled from the closest weather station?
         - Would it be more accurate to assign a temperature based on trip partitions?
   - Choose a time interval and update weather data only after every time interval
 
@@ -36,7 +36,7 @@ TODO: 2 November
   - Narmina: Anomaly detection techniques ✅
   - Konok: Data Cleaning ✅, Anomaly detection techniques ✅
   - Pepe: Weather data ✅
-  - Simon: Visualizations ✅, Seperate journeys ✅
+  - Simon: Visualizations ✅, Separate journeys ✅
 
 **NEXT MEETING**: thursday 9 november 10:00 
 
@@ -49,9 +49,11 @@ TODO: 9 November:
 for  everyone: 
   - Refresh on Data Mining concepts ✅
   - How to build Data Mining workflows? ✅
+  - ![image](https://github.com/simoncoessens/DataMining/assets/129620441/0395d5d1-7658-4775-b542-1ba589312f7a)
+
 
 WEATHER DATA: 
-What weather data are we going to incorporate in the analyis. 
+What weather data are we going to incorporate in the analysis? 
 - ``Temperature``
 - ```Humidity```
 - ````Snowfall````
@@ -73,7 +75,7 @@ Feature extraction:
 	5.	Data mining algorithms
 
 TASKS: 
-- Connect kaggle to local postgres (Simon) ✅
+- Connect Kaggle to local postgres (Simon) ✅
 - Adding extra features to the DB (Pepe) ✅
 - Correlation, heat map, feature extraction (Konok) ✅
 - preprocessing (Narmina) ✅
@@ -82,7 +84,7 @@ TASKS:
 **NEXT MEETING**: Sunday 19 november 10:00 
 
 
-**NEXT MEETING:** Thursday 23, November (after going to Data Mining lab)
+**NEXT MEETING:** Thursday 23, November (after going to the Data Mining lab)
 
 Classification will be important for the stream outlier detection part of the project
 
@@ -96,7 +98,7 @@ Type portability:
 Descriptive Analytics:
 - Narmina has performed sampling rate (it varies)
 - Simon has looked into segment speed
-- Pepe has looked into bounding box (values not contained in the Belgium geom)
+- Pepe has looked into the bounding box (values not contained in the Belgium geom)
 
 Noisy entries:
 - Konok mentioned binning to clean the noisy entries
@@ -147,14 +149,14 @@ Topics to be investigated:
    	SIMON: 🔄 working on it
 
 
-9. Look at the internal temperature sensor values that exceed certain difference with the ambient temperature\
+9. Look at the internal temperature sensor values that exceed certain differences with the ambient temperature\
 	PEPE: 🔄 working on it
 
 
-10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each another\
+10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each other \
 	PEPE: 🔄 working on it
 
 
 **Ideas on things for the stream bonus task**
 - Algorithm that checks incoming locations if the speed is within boundaries, otherwise flags incorrect location
-- Algorithm that checks incoming temperatures and checks duration of occurances when temperature is outside of boundarie and then reports
+- Algorithm that checks incoming temperatures and checks duration of occurrences when the temperature is outside of boundaries and then reports
