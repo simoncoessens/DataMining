@@ -1,0 +1,25 @@
+create table if not exists public.vehicle_data_enriched
+(
+    mapped_veh_id        numeric,
+    "timestamps_UTC"     text,
+    lat                  numeric,
+    lon                  numeric,
+    "RS_E_InAirTemp_PC1" numeric,
+    "RS_E_InAirTemp_PC2" numeric,
+    "RS_E_OilPress_PC1"  numeric,
+    "RS_E_OilPress_PC2"  numeric,
+    rs_e_rpm_pc1         numeric,
+    rs_e_rpm_pc2         numeric,
+    "RS_E_WatTemp_PC1"   numeric,
+    "RS_E_WatTemp_PC2"   numeric,
+    "RS_T_OilTemp_PC1"   numeric,
+    "RS_T_OilTemp_PC2"   numeric,
+    timestamps_floor     text,
+    nearest_point_id     integer,
+    "Lat"                numeric,
+    "Lon"                numeric,
+    "Time"               text,
+    "Temperature"        numeric,
+    "Humidity"           numeric,
+    "Rain"               numeric
+);
