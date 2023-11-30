@@ -73,11 +73,59 @@ Feature extraction:
 	5.	Data mining algorithms
 
 TASKS: 
-- Connect kaggle to local postgres (Simon)
-- Adding extra features to the DB (Pepe)
-- Correlation, heat map, feature extraction (Konok)
-- preprocessing (Narmina)
+- Connect kaggle to local postgres (Simon) ✅
+- Adding extra features to the DB (Pepe) ✅
+- Correlation, heat map, feature extraction (Konok) ✅
+- preprocessing (Narmina) ✅
 
 
 **NEXT MEETING**: Sunday 19 november 10:00 
 
+
+**NEXT MEETING:** Thursday 23, November (after going to Data Mining lab)
+
+Classification will be important for the stream outlier detection part of the project
+
+Feature extraction:
+- Difference between two sensors
+- Temperature categorization
+
+Type portability:
+- Numerical to categorical (temperature values)
+
+Descriptive Analytics:
+- Narmina has performed sampling rate (it varies)
+- Simon has looked into segment speed
+- Pepe has looked into bounding box (values not contained in the Belgium geom)
+
+Noisy entries:
+- Konok mentioned binning to clean the noisy entries
+
+Distance:
+- Distance to weather pull sensors can be included in the outlier detection analysis
+
+Clustering:
+- Could be useful to clean data (if a data point doesn't end up in a cluster it could be considered an outlier)
+
+Topics to be investigated:
+- Narmina: Classification and model validation data preparation
+- Konok: Clustering
+- Simon: Frequent patterns and association rule mining
+- Pepe: Outlier mining
+
+
+**Basic research questions:**
+- Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id). ```solved:```(look at abs_occ_temp.csv in exports)
+- Locations of the places where the temperatures are outside of the boundaries.
+- Look at the rpm values for when the temperatures are outside the boundaries -> ```solved``` Narmina working on it
+- Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?
+- How do external weather conditions correlate with the anomalies in the cooling systems?
+- How long do temperature anomalies last, and how severe are they?
+- Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?
+- Look at the speed and find anomalies -> ```solved``` Simon working on it
+- Look at the internal temperature sensor values that exceed certain difference with the ambient temperature -> Pepe working on it
+
+
+**Ideas on things for the stream bonus task**
+- Algorithm that checks incoming locations if the speed is within boundaries, otherwise flags incorrect location
+- Algorithm that checks incoming temperatures and checks duration of occurances when temperature is outside of boundarie and then reports
