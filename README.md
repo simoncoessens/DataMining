@@ -120,7 +120,7 @@ Topics to be investigated:
 
 
 2.  Locations of the places where the temperatures are outside of the boundaries.\
-	?
+	SIMON: 🔄 
 
 
 3.  Look at the rpm values for when the temperatures are outside the boundaries\
@@ -136,11 +136,11 @@ Topics to be investigated:
 
 
 6. How long do temperature anomalies last, and how severe are they?\
-   	?
+   	KONOK: 🔄  working on it
 
 
 7.  Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?\
-   	?
+   	NARMINA: 🔄 working on it
 
 
 8. Look at the speed and find anomalies\
@@ -152,7 +152,7 @@ Topics to be investigated:
 
 
 10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each another\
-	?
+	PEPE: 🔄 working on it
 
 
 **Ideas on things for the stream bonus task**
