@@ -49,7 +49,8 @@ TODO: 9 November:
 for  everyone: 
   - Refresh on Data Mining concepts ✅
   - How to build Data Mining workflows? ✅
-  - ![image](https://github.com/simoncoessens/DataMining/assets/129620441/0395d5d1-7658-4775-b542-1ba589312f7a)
+ ![image](https://github.com/simoncoessens/DataMining/assets/129620441/c3b7423b-24a5-4186-ad73-a1e03bacf0ac)
+
 
 
 WEATHER DATA: 
