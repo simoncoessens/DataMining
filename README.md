@@ -157,6 +157,9 @@ Topics to be investigated:
 10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each other \
 	PEPE: 🔄 working on it
 
+11. When and Where did both of the engines shut down and what was the temperature of the Air, water, and oil for both of the engines. Point out the station lat and lon values and filter out for the where condition, if the temperature readings are below the threshold values then it is the sensor error, and requires further cleaning. 
+Konok: 🔄 working on it
+
 
 **Ideas on things for the stream bonus task**
 - Algorithm that checks incoming locations if the speed is within boundaries, otherwise flags incorrect location
