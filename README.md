@@ -119,7 +119,7 @@ Topics to be investigated:
 
 **Basic research questions:**
 1. Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id).\
-	SIMON: 🔄 (look at abs_occ_temp.csv in exports)\
+	SIMON: ✅ Look at R1.ipynb in exports
 
 
 2.  Locations of the places where the temperatures are outside of the boundaries.\
