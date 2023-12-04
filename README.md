@@ -157,16 +157,6 @@ Topics to be investigated:
 10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each other \
 	PEPE: 🔄 working on it
 
-11. When and Where did both of the engines shut down and what was the temperature of the Air, water, and oil for both of the engines? Point out the station lat and lon values and filter out for the where condition, if the temperature readings are below the threshold values then it is the sensor error and requires further cleaning. \
-KONOK: 🔄 working on it
-
-**Data Cleaning ideas:**
-1. If a train's movement is confined within a certain area, yet some data points are located outside this area, these outliers are likely errors requiring additional cleaning.  Use bounding box method to determine the boundary of a train. \
-KONOK: 🔄 working on it
-
-3. If a specific train exhibits speeds that are unrealistically high and surpass the vehicle's capabilities, this suggests GPS inaccuracies that must be resolved. Addressing this issue can be achieved through methods such as smoothing or outlier detection in the segment speed data. \
-KONOK: 🔄 working on it
-
 
 **Ideas on things for the stream bonus task**
 - Algorithm that checks incoming locations if the speed is within boundaries, it flags incorrect location
