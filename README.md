@@ -131,11 +131,11 @@ Topics to be investigated:
 
 
 4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?\
-   	KONOK: 🔄  working on it
+   	KONOK: ✅ Look at R4_R5.ipynb in exports
 
 
 5. How do external weather conditions correlate with the anomalies in the cooling systems?\
-   	KONOK: 🔄  working on it
+   	KONOK: ✅ Look at R4_R5.ipynb in exports
 
 
 6. How long do temperature anomalies last, and how severe are they?\
