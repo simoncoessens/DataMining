@@ -127,7 +127,7 @@ Topics to be investigated:
 
 
 3.  Look at the rpm values for when the temperatures are outside the boundaries\
-   	NARMINA: 🔄 working on it
+   	NARMINA: ✅ Look at R3.ipynb in exports
 
 
 4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?\
