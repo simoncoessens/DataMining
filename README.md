@@ -143,7 +143,7 @@ Topics to be investigated:
 
 
 7.  Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?\
-   	NARMINA: 🔄 working on it
+   	NARMINA: ✅ Look at R7.ipynb in exports
 
 
 8. Look at the speed and find anomalies\
