@@ -127,7 +127,7 @@ Topics to be investigated:
 
 
 3.  Look at the rpm values for when the temperatures are outside the boundaries\
-   	NARMINA: ✅ Look at R3.ipynb in exports
+   	NARMINA: 🔄  
 
 
 4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?\
@@ -143,7 +143,7 @@ Topics to be investigated:
 
 
 7.  Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?\
-   	NARMINA: ✅ Look at R7.ipynb in exports
+   	NARMINA: 🔄  
 
 
 8. Look at the speed and find anomalies\
