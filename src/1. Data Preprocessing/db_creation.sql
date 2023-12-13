@@ -36,7 +36,7 @@ CREATE INDEX idx_mapped_veh_id ON vehicle_data(mapped_veh_id);
 CREATE EXTENSION POSTGIS;
 
 ALTER TABLE vehicle_data
-ADD COLUMN pg_point GEOGRAPHY(Point);
+ADD COLUMN pg_point GEOMETRY(Point, 4326);
 
 UPDATE vehicle_data
 SET pg_point = ST_MakePoint(lon, lat)::geography;
