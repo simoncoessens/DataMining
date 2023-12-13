@@ -25,3 +25,9 @@ SELECT COUNT(*) FROM vehicle_data;
 SELECT * FROM vehicle_data LIMIT 10;
 
 SELECT * FROM vehicle_data WHERE mapped_veh_id = 181;
+
+
+-- Index creation
+CREATE INDEX idx_timestamps_utc ON vehicle_data(timestamps_UTC);
+
+CREATE INDEX idx_mapped_veh_id ON vehicle_data(mapped_veh_id);
