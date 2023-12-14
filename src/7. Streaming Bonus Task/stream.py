@@ -3,10 +3,12 @@ import numpy as np  # np mean, np random
 import pandas as pd  # read csv, df manipulation
 import time  # to simulate a real time data, time loop
 import plotly.express as px  # interactive charts
+from folium.plugins import HeatMap
 from sqlalchemy import create_engine
 from datetime import datetime, time as dt_time
 import humanize
-
+import folium
+from streamlit_folium import folium_static
 
 st.set_page_config(
     page_title='Real-Time SNCB Dashboard',
@@ -75,6 +77,7 @@ df = pd.read_sql_query(query_time_frame, engine)
 live_df = pd.DataFrame(columns=df.columns)
 # Initialize a DataFrame to keep track of boundary crossings
 boundary_log_df = pd.DataFrame(columns=['timestamp', 'sensor', 'value', 'duration', 'boundary'])
+boundary_log_df_full = pd.DataFrame(columns=['timestamp', 'sensor', 'value', 'boundary', 'lat', 'lon'])
 
 # Initialize a DataFrame to keep track of boundary crossings
 boundary_log_df = pd.DataFrame(columns=['start_timestamp', 'sensor', 'value', 'duration', 'boundary'])
@@ -109,6 +112,15 @@ for index, row in df.iterrows():
     for sensor, boundary in sensor_boundaries.items():
         sensor_value = row[sensor]
         if sensor_value > boundary:
+            boundary_log_df_full.append({
+                    'start_timestamp': current_time,
+                    'sensor': sensor,
+                    'value': sensor_value,
+                    'duration': 0,  # Initialize duration to 0
+                    'boundary': boundary,
+                    'lat': live_df['lat'].iloc[-1],
+                    'lon': live_df['lon'].iloc[-1]
+                }, ignore_index=True)
             if not boundary_status[sensor]['crossed']:
                 # Sensor has just crossed the boundary
                 boundary_status[sensor]['crossed'] = True
@@ -220,4 +232,22 @@ for index, row in df.iterrows():
             st.markdown("### Boundary crossings:")
             st.dataframe(boundary_log_df)
         time.sleep(0.1)
+
+        with fig_col3_r2:
+            st.markdown("### Anomaly Heatmap")
+
+            # Check if there are enough entries
+            if not boundary_log_df.empty:
+                # Create a base map
+                m = folium.Map(location=[50.8503, 4.3517], zoom_start=10)  # Set default location
+
+                # Create a heatmap
+                heatmap_data = boundary_log_df_full[
+                    ['lat', 'lon']].values.tolist()  # Replace with your lat-long columns
+                HeatMap(heatmap_data).add_to(m)
+
+                # Render the map with Streamlit Folium component
+                folium_static(m)
+            else:
+                st.write("No anomaly data available for heatmap.")
     # placeholder.empty()
