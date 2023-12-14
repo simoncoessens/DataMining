@@ -31,3 +31,13 @@ SELECT * FROM vehicle_data WHERE mapped_veh_id = 181;
 CREATE INDEX idx_timestamps_utc ON vehicle_data(timestamps_UTC);
 
 CREATE INDEX idx_mapped_veh_id ON vehicle_data(mapped_veh_id);
+
+-- POSTGIS extension 
+CREATE EXTENSION POSTGIS;
+
+ALTER TABLE vehicle_data
+ADD COLUMN pg_point GEOMETRY(Point, 4326);
+
+UPDATE vehicle_data
+SET pg_point = ST_MakePoint(lon, lat)::geography;
+
