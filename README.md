@@ -157,6 +157,9 @@ Topics to be investigated:
 10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each other \
 	PEPE: 🔄 working on it
 
+11. If one of the engines is off and another is on, then there there is probably an issue with the one that is off, as we typically try to have both of them operating at the same time.
+    	NARMINA: 🔄
+
 
 **Ideas on things for the stream bonus task**
 - Algorithm that checks incoming locations if the speed is within boundaries, it flags incorrect location
