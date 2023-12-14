@@ -123,7 +123,7 @@ Topics to be investigated:
 
 
 2.  Locations of the places where the temperatures are outside of the boundaries.\
-	SIMON: 🔄 
+	SIMON: ✅ R2
 
 
 3.  Look at the rpm values for when the temperatures are outside the boundaries\
@@ -147,7 +147,7 @@ Topics to be investigated:
 
 
 8. Look at the speed and find anomalies\
-   	SIMON: 🔄 working on it
+   	SIMON: ✅ R8
 
 
 9. Look at the internal temperature sensor values that exceed certain differences with the ambient temperature\
