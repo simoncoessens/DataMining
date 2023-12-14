@@ -127,7 +127,7 @@ Topics to be investigated:
 
 
 3.  Look at the rpm values for when the temperatures are outside the boundaries\
-   	NARMINA: 🔄  
+   	NARMINA: ✅ R3
 
 
 4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?\
@@ -143,7 +143,7 @@ Topics to be investigated:
 
 
 7.  Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?\
-   	NARMINA: 🔄  
+   	❌
 
 
 8. Look at the speed and find anomalies\
@@ -158,7 +158,7 @@ Topics to be investigated:
 	PEPE: 🔄 working on it
 
 11. If one of the engines is off and another is on, then there there is probably an issue with the one that is off, as we typically try to have both of them operating at the same time.
-    	NARMINA: 🔄
+    	NARMINA: ✅ R11
 
 
 **Ideas on things for the stream bonus task**
