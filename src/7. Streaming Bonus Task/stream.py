@@ -7,8 +7,6 @@ from folium.plugins import HeatMap
 from sqlalchemy import create_engine
 from datetime import datetime, time as dt_time
 import humanize
-import folium
-from streamlit_folium import folium_static
 
 st.set_page_config(
     page_title='Real-Time SNCB Dashboard',
@@ -112,7 +110,7 @@ for index, row in df.iterrows():
     for sensor, boundary in sensor_boundaries.items():
         sensor_value = row[sensor]
         if sensor_value > boundary:
-            boundary_log_df_full.append({
+            boundary_log_df_full = boundary_log_df_full.append({
                     'start_timestamp': current_time,
                     'sensor': sensor,
                     'value': sensor_value,
@@ -236,18 +234,24 @@ for index, row in df.iterrows():
         with fig_col3_r2:
             st.markdown("### Anomaly Heatmap")
 
-            # Check if there are enough entries
-            if not boundary_log_df.empty:
-                # Create a base map
-                m = folium.Map(location=[50.8503, 4.3517], zoom_start=10)  # Set default location
+            # Calculate the mean latitude and longitude for centering the map
+            if not boundary_log_df_full.empty:
+                center_lat = boundary_log_df_full['lat'].mean()
+                center_lon = boundary_log_df_full['lon'].mean()
 
-                # Create a heatmap
-                heatmap_data = boundary_log_df_full[
-                    ['lat', 'lon']].values.tolist()  # Replace with your lat-long columns
-                HeatMap(heatmap_data).add_to(m)
+                # Create a scatter map centered on the mean latitude and longitude
+                fig = px.scatter_mapbox(
+                    boundary_log_df_full,
+                    lat='lat',
+                    lon='lon',
+                    zoom=8,
+                    height=400,
+                    center={"lat": center_lat, "lon": center_lon},
+                    mapbox_style="open-street-map"
+                )
 
-                # Render the map with Streamlit Folium component
-                folium_static(m)
+                # Display the map in Streamlit
+                st.plotly_chart(fig)
             else:
-                st.write("No anomaly data available for heatmap.")
+                st.write("No data available for plotting.")
     # placeholder.empty()
