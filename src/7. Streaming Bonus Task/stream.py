@@ -7,6 +7,14 @@ from folium.plugins import HeatMap
 from sqlalchemy import create_engine
 from datetime import datetime, time as dt_time
 import humanize
+from geopy.distance import geodesic
+
+def calculate_distance(row):
+    if pd.notna(row['prev_lat']) and pd.notna(row['prev_lon']):
+        return geodesic((row['lat'], row['lon']), (row['prev_lat'], row['prev_lon'])).kilometers
+    else:
+        return None
+
 
 st.set_page_config(
     page_title='Real-Time SNCB Dashboard',
@@ -91,6 +99,9 @@ sensor_boundaries = {'rs_e_inairtemp_pc1': 65, 'rs_e_inairtemp_pc2': 65,
                          'rs_e_wattemp_pc1': 100, 'rs_e_wattemp_pc2': 100,
                          'rs_e_oilpress_pc1': 115, 'rs_e_oilpress_pc2': 115}
 
+# Initialize an empty DataFrame to store speed anomalies
+anomalies_speed = pd.DataFrame()
+
 for index, row in df.iterrows():
     # add row to the current df
     live_df = pd.concat([live_df, pd.DataFrame([row])], ignore_index=True)
@@ -140,6 +151,33 @@ for index, row in df.iterrows():
             boundary_status[sensor]['crossed'] = False
             boundary_status[sensor]['start_time'] = None
 
+    # Check the speeds
+    last_two_entries = live_df.tail(2)
+
+    # Calculate previous lat, lon, and time
+    last_two_entries['prev_lat'] = last_two_entries['lat'].shift(1)
+    last_two_entries['prev_lon'] = last_two_entries['lon'].shift(1)
+    last_two_entries['prev_time'] = last_two_entries['timestamps_utc'].shift(1)
+
+    # Calculate distance and time difference
+    last_two_entries['distance_km'] = last_two_entries.apply(calculate_distance, axis=1)
+    last_two_entries['time_diff_minutes'] = (last_two_entries['timestamps_utc'] - last_two_entries[
+        'prev_time']).dt.total_seconds() / 60
+
+    # Calculate speed in km/h
+    last_two_entries['speed_kmh'] = last_two_entries['distance_km'] / (last_two_entries['time_diff_minutes'] / 60)
+
+    # Identify anomalies
+    last_two_entries['status'] = np.where(
+        (last_two_entries['speed_kmh'] > 200) &
+        (last_two_entries['distance_km'] > 1) &
+        (last_two_entries['time_diff_minutes'] < 2),
+        'Anomaly',
+        'Normal'
+    )
+
+    # Extract anomalies
+    anomalies_speed = anomalies_speed.append(last_two_entries[last_two_entries['status'] == 'Anomaly'])
     with placeholder.container():
         # Assuming live_df['timestamps_utc'].iloc[-1] is a datetime object
         time_value = live_df['timestamps_utc'].iloc[-1]
@@ -229,7 +267,6 @@ for index, row in df.iterrows():
         with fig_col2_r2:
             st.markdown("### Boundary crossings:")
             st.dataframe(boundary_log_df)
-        time.sleep(0.1)
 
         with fig_col3_r2:
             st.markdown("### Anomaly Heatmap")
@@ -254,4 +291,10 @@ for index, row in df.iterrows():
                 st.plotly_chart(fig)
             else:
                 st.write("No data available for plotting.")
+
+        fig_col1_r3, fig_col2_r3, fig_col3_r3 = st.columns(3)
+        with fig_col1_r3:
+            st.markdown("### Location anomalies:")
+            st.dataframe(anomalies_speed)
+        time.sleep(0.01)
     # placeholder.empty()
