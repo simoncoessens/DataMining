@@ -121,44 +121,23 @@ Topics to be investigated:
 1. Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id).\
 	SIMON: ✅ Look at R1.ipynb in exports
 
-
 2.  Locations of the places where the temperatures are outside of the boundaries.\
 	SIMON: ✅ R2
-
 
 3.  Look at the rpm values for when the temperatures are outside the boundaries\
    	NARMINA: ✅ R3
 
-
 4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?\
    	KONOK: ✅ Look at R4_R5.ipynb in exports
-
-
-5. How do external weather conditions correlate with the anomalies in the cooling systems?\
-   	KONOK: ✅ Look at R4_R5.ipynb in exports
-
-
-6. How long do temperature anomalies last, and how severe are they?\
-   	KONOK: 🔄  working on it
-
-
-7.  Has the frequency or nature of anomalies changed over the observed period (January 2023 to September 2023)?\
-   	❌
-
 
 8. Look at the speed and find anomalies\
    	SIMON: ✅ R8
 
-
 9. Look at the internal temperature sensor values that exceed certain differences with the ambient temperature\
 	PEPE: 🔄 working on it
 
-
 10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each other \
 	PEPE: 🔄 working on it
-
-11. If one of the engines is off and another is on, then there there is probably an issue with the one that is off, as we typically try to have both of them operating at the same time.
-    	NARMINA: ✅ R11
 
 
 **Ideas on things for the stream bonus task**
