@@ -91,13 +91,13 @@ boundary_log_df = pd.DataFrame(columns=['start_timestamp', 'sensor', 'value', 'd
 # Dictionary to track if a sensor is currently above its boundary
 boundary_status = {sensor: {'crossed': False, 'start_time': None} for sensor in ['rs_e_inairtemp_pc1', 'rs_e_inairtemp_pc2',
                                                                                  'rs_e_wattemp_pc1', 'rs_e_wattemp_pc2',
-                                                                                 'rs_e_oilpress_pc1', 'rs_e_oilpress_pc2']}
+                                                                                 'rs_t_oiltemp_pc1', 'rs_t_oiltemp_pc2']}
 
 # Boundary checks:
  # Check if any sensor value exceeds its boundary and log the incident
 sensor_boundaries = {'rs_e_inairtemp_pc1': 65, 'rs_e_inairtemp_pc2': 65,
                          'rs_e_wattemp_pc1': 100, 'rs_e_wattemp_pc2': 100,
-                         'rs_e_oilpress_pc1': 115, 'rs_e_oilpress_pc2': 115}
+                         'rs_t_oiltemp_pc1': 115, 'rs_t_oiltemp_pc2': 115}
 
 # Initialize an empty DataFrame to store speed anomalies
 anomalies_speed = pd.DataFrame()
@@ -111,8 +111,10 @@ for index, row in df.iterrows():
     air_2 = live_df['rs_e_inairtemp_pc2'].iloc[-1]
     water_1 = live_df['rs_e_wattemp_pc1'].iloc[-1]
     water_2 = live_df['rs_e_wattemp_pc2'].iloc[-1]
-    oil_1 = live_df['rs_e_oilpress_pc1'].iloc[-1]
-    oil_2 = live_df['rs_e_oilpress_pc2'].iloc[-1]
+    oil_1 = live_df['rs_t_oiltemp_pc1'].iloc[-1]
+    oil_2 = live_df['rs_t_oiltemp_pc2'].iloc[-1]
+    oil_press_1 = live_df['rs_e_oilpress_pc1'].iloc[-1]
+    oil_press_2 = live_df['rs_e_oilpress_pc1'].iloc[-1]
 
     # Boundary checks:
 
@@ -184,11 +186,20 @@ for index, row in df.iterrows():
         formatted_time = time_value.strftime("%A, %d %B %Y %H:%M:%S")
         relative_time = humanize.naturaltime(datetime.now() - time_value)
 
-        kpi1, kpi2, kpi3, kpi4 = st.columns(4)
-        kpi1.metric(label="Air Temperature", value=f"{round(air_1)}°C")
-        kpi2.metric(label="Water Temperature", value=f"{round(water_1)}°C")
-        kpi3.metric(label="Oil Temperature", value=f"{round(oil_1)}°C")
-        kpi4.metric(label="Time", value=formatted_time, delta=relative_time)
+        kpi_time = st.metric(label="Time", value=formatted_time, delta=relative_time)
+
+
+        kpi1_1, kpi2_1, kpi3_1, kpi4_1 = st.columns(4)
+        kpi1_1.metric(label="Air Temperature pc1", value=f"{round(air_1)}°C")
+        kpi2_1.metric(label="Water Temperature pc1", value=f"{round(water_1)}°C")
+        kpi3_1.metric(label="Oil Temperature pc1", value=f"{round(oil_1)}°C")
+        kpi4_1.metric(label="Oil Temperature pc1", value=f"{round(oil_press_1)}°C")
+
+        kpi1_2, kpi2_2, kpi3_2, kpi4_2 = st.columns(4)
+        kpi1_2.metric(label="Air Temperature pc2", value=f"{round(air_2)}°C")
+        kpi2_2.metric(label="Water Temperature pc2", value=f"{round(water_2)}°C")
+        kpi3_2.metric(label="Oil Temperature pc2", value=f"{round(oil_2)}°C")
+        kpi4_2.metric(label="Oil Temperature pc2", value=f"{round(oil_press_2)}°C")
 
         # create two columns for charts
 
@@ -220,11 +231,11 @@ for index, row in df.iterrows():
             st.plotly_chart(fig_water)
 
         with fig_col3:
-            st.markdown("### Oil Pressure Over Time")
+            st.markdown("### Oil Temperature Over Time")
             # Plotting oil pressure from both sensors on the same graph
-            fig_oil = px.line(live_df, x='timestamps_utc', y=['rs_e_oilpress_pc1', 'rs_e_oilpress_pc2'],
-                              labels={'value': 'Oil Pressure', 'variable': 'Sensor'},
-                              title='Oil Pressure Over Time')
+            fig_oil = px.line(live_df, x='timestamps_utc', y=['rs_t_oiltemp_pc1', 'rs_t_oiltemp_pc2'],
+                              labels={'value': 'Oil Temperature', 'variable': 'Sensor'},
+                              title='Oil Temperature Over Time')
             fig_oil.update_layout(legend_title_text='Sensor', xaxis_title='Time', yaxis_title='Oil Pressure')
             # Adding maximum acceptable temperature line for oil
             fig_oil.add_hline(y=115, line_dash="dot", line_color="red", annotation_text="Max Acceptable Temp",
