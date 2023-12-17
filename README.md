@@ -130,9 +130,6 @@ Topics to be investigated:
 4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?\
    	KONOK: ✅ Look at R4_R5.ipynb in exports
 
-5. How do external weather conditions correlate with the anomalies in the cooling systems?\
-   	KONOK: ✅ Look at R4_R5.ipynb in exports
-
 8. Look at the speed and find anomalies\
    	SIMON: ✅ R8
 
