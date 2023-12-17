@@ -38,6 +38,26 @@ CREATE EXTENSION POSTGIS;
 ALTER TABLE vehicle_data
 ADD COLUMN pg_point GEOMETRY(Point, 4326);
 
+
+-- Creation of the database main table
+CREATE TABLE vehicle_data (
+    mapped_veh_id INT,
+    timestamps_UTC TIMESTAMP,
+    lat FLOAT,
+    lon FLOAT,
+    RS_E_InAirTemp_PC1 FLOAT,
+    RS_E_InAirTemp_PC2 FLOAT,
+    RS_E_OilPress_PC1 FLOAT,
+    RS_E_OilPress_PC2 FLOAT,
+    RS_E_RPM_PC1 FLOAT,
+    RS_E_RPM_PC2 FLOAT,
+    RS_E_WatTemp_PC1 FLOAT,
+    RS_E_WatTemp_PC2 FLOAT,
+    RS_T_OilTemp_PC1 FLOAT,
+    RS_T_OilTemp_PC2 FLOAT,
+    pg_point GEOMETRY(Point, 4326)
+);
+
 UPDATE vehicle_data
 SET pg_point = ST_MakePoint(lon, lat)::geography;
 
