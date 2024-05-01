@@ -1,4 +1,3 @@
-README: 
 Data Mining project for the Data Mining course at ULB.
 
 ```
