@@ -1,147 +1,46 @@
-Data Mining project for the Data Mining course at ULB.
+# SNCB Anomaly Detection Project
 
-```
+### Overview
 
- ______   ________   _________  ________       ___ __ __    ________  ___   __     ________  ___   __    _______     
-/_____/\ /_______/\ /________/\/_______/\     /__//_//_/\  /_______/\/__/\ /__/\  /_______/\/__/\ /__/\ /______/\    
-\:::_ \ \\::: _  \ \\__.::.__\/\::: _  \ \    \::\| \| \ \ \__.::._\/\::\_\\  \ \ \__.::._\/\::\_\\  \ \\::::__\/__  
- \:\ \ \ \\::(_)  \ \  \::\ \   \::(_)  \ \    \:.      \ \   \::\ \  \:. `-\  \ \   \::\ \  \:. `-\  \ \\:\ /____/\ 
-  \:\ \ \ \\:: __  \ \  \::\ \   \:: __  \ \    \:.\-/\  \ \  _\::\ \__\:. _    \ \  _\::\ \__\:. _    \ \\:\\_  _\/ 
-   \:\/.:| |\:.\ \  \ \  \::\ \   \:.\ \  \ \    \. \  \  \ \/__\::\__/\\. \`-\  \ \/__\::\__/\\. \`-\  \ \\:\_\ \ \ 
-    \____/_/ \__\/\__\/   \__\/    \__\/\__\/     \__\/ \__\/\________\/ \__\/ \__\/\________\/ \__\/ \__\/ \_____\/ 
+A Data Mining project at Université Libre de Bruxelles (ULB). The aim is to detect anomalies in SNCB train data using a mix of preprocessing, domain knowledge, and advanced algorithms.
 
-```
+<div align="center">
+    <img src="https://actus.ulb.be/medias/photo/logo-universite-libre-bruxelles_1661952138925-png?ID_FICHE=19524" alt="ULB Logo" width="300"/>
+</div>
 
-```
-___________   _______________________________________^__
- ___   ___ |||  ___   ___   ___    ___ ___  |   __  ,----\                     Simon Coessens
-|   | |   |||| |   | |   | |   |  |   |   | |  |  | |_____\                      Pepe Jose Carlos
-|___| |___|||| |___| |___| |___|  | O | O | |  |  |        \                       MD Kamrul Islam
-           |||                    |___|___| |  |__|         )                        Narmina Mahmudova
-___________|||______________________________|______________/
-           |||                                        /--------
------------'''---------------------------------------'
-```
+**Team Members**:
 
-How to import weather data: 
-  - Assign weather data from the closest weather station.
-        - Is weather data always pulled from the closest weather station?
-        - Would it be more accurate to assign a temperature based on trip partitions?
-  - Choose a time interval and update weather data only after every time interval
+- Simon Coessens
+- Md Kamrul Islam (Konok)
+- Narmina Mahmudova
+- José Carlos Lozano (Pepe)
 
+### Objectives
 
+Identify anomalies through:
 
-TODO: 2 November
-  - Narmina: Anomaly detection techniques ✅
-  - Konok: Data Cleaning ✅, Anomaly detection techniques ✅
-  - Pepe: Weather data ✅
-  - Simon: Visualizations ✅, Separate journeys ✅
+1. **Data Preprocessing**: Handling data quality issues.
+2. **Domain Knowledge Analysis**: Addressing specific research questions.
+3. **Advanced Algorithms**: Implementing clustering and outlier detection.
 
-**NEXT MEETING**: thursday 9 november 10:00 
+### Key Steps
 
-TODO: 9 November:
-  - Simon: MobilityDB setup ✅
-  - Narmina: Anomaly detection techniques ✅
-  - Konok: Local notebook (jupyter) ✅
-  - Pepe: other work ✅
+1. **Data Handling**: Migrated from CSV to PostgreSQL for better performance.
+2. **Exploratory Data Analysis**: Identified anomalies in temperature, RPM, etc.
+3. **Data Enrichment**: Added weather data (temperature, humidity, rain).
+4. **Research Questions**: Investigated temperature anomalies, sensor errors, and speed irregularities.
+5. **Anomaly Detection**: Utilized clustering and classification techniques.
+6. **Dashboard Development**: Created visualizations for anomaly insights.
+7. **Real-Time Detection**: Set up streaming algorithms to flag live anomalies.
 
-for  everyone: 
-  - Refresh on Data Mining concepts ✅
-  - How to build Data Mining workflows? ✅
-  - ![image](https://github.com/simoncoessens/DataMining/assets/129620441/c3b7423b-24a5-4186-ad73-a1e03bacf0ac)
+### Meetings & Tasks
 
+- **2 Nov**: Initial anomaly techniques, data cleaning, visualizations.
+- **9 Nov**: MobilityDB setup, local Jupyter, anomaly refinement.
+- **19 Nov**: Feature engineering and database updates.
+- **23 Nov**: Data Mining lab preparation.
 
+### Next Steps
 
-WEATHER DATA: 
-What weather data are we going to incorporate in the analysis? 
-- ``Temperature``
-- ```Humidity```
-- ````Snowfall````
-- ```Rain```
-
-**NEXT MEETING**: thursday 16 november 10:00 
-
-
-NEXT STEPS: 
-
-Feature extraction: 
-- Labeling the anomalies
-
-
- 1. Data cleaning ( output: .csv)
-	2.	Database creation
-	3.	Add features to the DB
-	4.	Feature extraction
-	5.	Data mining algorithms
-
-TASKS: 
-- Connect Kaggle to local postgres (Simon) ✅
-- Adding extra features to the DB (Pepe) ✅
-- Correlation, heat map, feature extraction (Konok) ✅
-- preprocessing (Narmina) ✅
-
-
-**NEXT MEETING**: Sunday 19 november 10:00 
-
-
-**NEXT MEETING:** Thursday 23, November (after going to the Data Mining lab)
-
-Classification will be important for the stream outlier detection part of the project
-
-Feature extraction:
-- Difference between two sensors
-- Temperature categorization
-
-Type portability:
-- Numerical to categorical (temperature values)
-
-Descriptive Analytics:
-- Narmina has performed sampling rate (it varies)
-- Simon has looked into segment speed
-- Pepe has looked into the bounding box (values not contained in the Belgium geom)
-
-Noisy entries:
-- Konok mentioned binning to clean the noisy entries
-
-Distance:
-- Distance to weather pull sensors can be included in the outlier detection analysis
-
-Clustering:
-- Could be useful to clean data (if a data point doesn't end up in a cluster it could be considered an outlier)
-
-Topics to be investigated:
-- Narmina: Classification and model validation data preparation
-- Konok: Clustering
-- Simon: Frequent patterns and association rule mining
-- Pepe: Outlier mining
-
-
-**Basic research questions:**
-1. Absolute number of times the temperatures are outside the boundaries for each vehicle_id (maybe there are more for one -> problem with a veh_id).\
-	SIMON: ✅ Look at R1.ipynb in exports
-
-2.  Locations of the places where the temperatures are outside of the boundaries.\
-	SIMON: ✅ R2
-
-3.  Look at the rpm values for when the temperatures are outside the boundaries\
-   	NARMINA: ✅ R3
-
-4. Are there specific times of day, days of the week, or months where temperature anomalies are more frequent?\
-   	KONOK: ✅ Look at R4_R5.ipynb in exports
-
-8. Look at the speed and find anomalies\
-   	SIMON: ✅ R8
-
-9. Look at the internal temperature sensor values that exceed certain differences with the ambient temperature\
-	PEPE: 🔄 working on it
-
-10. Look at the differences between the pairs of sensors. Look at other attributes when they deviate from each other \
-	PEPE: 🔄 working on it
-
-
-**Ideas on things for the stream bonus task**
-- Algorithm that checks incoming locations if the speed is within boundaries, it flags incorrect location
-- Algorithm that checks incoming temperatures and checks the duration of occurrences when the temperature is outside of boundaries and then reports
-
-**Presentation**
-- overleaf link: https://www.overleaf.com/2726483457sfsvcpcstxjw#4c1890
+- Refine streaming algorithms.
+- Improve clustering and classification for data cleaning.
